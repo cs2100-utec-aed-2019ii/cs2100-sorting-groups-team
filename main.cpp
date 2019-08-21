@@ -15,7 +15,7 @@ public:
 
         unsigned int j;
 
-        vector<T> a = {7,3,5,9,3,14,62,4,25,4562,36};
+        vector<T> a = myVector;
         for(unsigned int i = 1; i < a.size();i++){
             j = i;
             while(j>0 && a[j-1]>a[j]){
@@ -29,7 +29,9 @@ public:
         }
         cout<<endl;
     };
+
     void SelectionSort(){};
+
     void BubbleSort(){};
     void MergeSort(){};
     void HeapSort(){};
