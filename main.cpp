@@ -15,7 +15,7 @@ public:
 
         unsigned int j;
 
-        vector<T> a = {7,3,5,9,3,14,62,4,25,4562,36};
+        vector<T> a = myVector;
         for(unsigned int i = 1; i < a.size();i++){
             j = i;
             while(j>0 && a[j-1]>a[j]){
@@ -30,7 +30,24 @@ public:
         cout<<endl;
     };
     void SelectionSort(){};
-    void BubbleSort(){};
+
+    void BubbleSort(){
+      vector<T> a = myVector;
+      for(unsigned int i = 0; i < a.size() - 1; i++){
+          for(unsigned int j = 0; j < a.size() - 1 - i; j++){
+              if(a[j]>a[j+1]){
+                  std::swap(a[j], a[j+1]);
+              }
+          }
+      }
+
+      for(T i: a){
+          cout<<i<<" ";
+      }
+      cout<<endl;
+
+    };
+
     void MergeSort(){};
     void HeapSort(){};
     void QuickSort(){};
