@@ -7,9 +7,9 @@ El archivo _sorting.pdf_ contiene un conjunto de algoritmos de ordenación así 
 Implementar la clase `Sorting <typename T>`  con los siguientes métodos:
 
 ### Mandatory: (18pts)
-	- [ ] InsertSort  -> (3pts)
-	- [ ] SelectionSort -> (3pts)
-	- [ ] BubbleSort -> (3pts)
+	- [x] InsertSort  -> (3pts)
+	- [x] SelectionSort -> (3pts)
+	- [x] BubbleSort -> (3pts)
 	- [ ] MergeSort -> (3pts)
 	- [ ] HeapSort -> (3pts)
 	- [ ] QuickSort  -> (3pts) 
