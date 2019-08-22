@@ -11,7 +11,25 @@ public:
     Sorting()= default;
 
     void InsertSort(){};
-    void SelectionSort(){};
+    void SelectionSort()
+		{
+			vector<T> a = myVector;
+			auto size = a.size();
+			int min;
+			for(int i=0; i < size-1; i++)
+			{
+				min = i;
+				for(int j=0; j < size; j++)
+				{
+					if(a[j] < a[min])
+						min = a[j];
+
+					T temp = a[min];
+					a[min] = a[i];
+					a[i] = temp;
+				}	
+			}
+		};
     void BubbleSort(){};
     void MergeSort(){};
     void HeapSort(){};
