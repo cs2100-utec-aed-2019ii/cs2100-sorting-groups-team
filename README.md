@@ -11,7 +11,7 @@ Implementar la clase `Sorting <typename T>`  con los siguientes métodos:
 	- [x] SelectionSort -> (3pts)
 	- [x] BubbleSort -> (3pts)
 	- [ ] MergeSort -> (3pts)
-	- [ ] HeapSort -> (3pts)
+	- [x] HeapSort -> (3pts)
 	- [ ] QuickSort  -> (3pts) 
 
 ### Extra: (2pts)
