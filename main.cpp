@@ -135,6 +135,7 @@ public:
         swap(a[i + 1], a[high]);
         return (i + 1);
     }
+
     void quickSort(vector<T>& a, int low, int high)
     {
         if (low < high)
@@ -157,39 +158,35 @@ public:
     }
 
     void BrickSort(){
+			vector<T> a = myVector;
+			bool sorted = false;
 
-    vector<T> a = myVector;
+			while(!sorted){
+				sorted = true;
 
-    bool sorted = false;
+				for(unsigned int i = 0; i<=a.size()-2;i+=2){
+					if (a[i] > a[i + 1]) {
+							std::swap(a[i], a[i + 1]);
+							sorted = false;
+					}
+				}
 
-    while(!sorted){
-      sorted = true;
+				for(unsigned int i = 1; i<=a.size()-2;i+=2){
+					if (a[i] > a[i + 1]) {
+							std::swap(a[i], a[i + 1]);
+							sorted = false;
+					}
+				}
+		 }
 
-      for(unsigned int i = 0; i<=a.size()-2;i+=2){
-        if (a[i] > a[i + 1]) {
-            std::swap(a[i], a[i + 1]);
-            sorted = false;
-        }
-      }
+			for(T i:a){
+				cout<<i<<" ";
+			}
+			cout<<endl;
 
-      for(unsigned int i = 1; i<=a.size()-2;i+=2){
-        if (a[i] > a[i + 1]) {
-            std::swap(a[i], a[i + 1]);
-            sorted = false;
-        }
-      }
-    }
+			}
 
-    for(T i:a){
-      cout<<i<<" ";
-    }
-    cout<<endl;
-
-  }
-
-};
-
-
+		};
 
 
 int main (int, char * []){
