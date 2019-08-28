@@ -31,7 +31,26 @@ public:
         cout << endl;
     };
 
-    void SelectionSort() {};
+		void SelectionSort()
+				{
+					vector<T> a = myVector;
+					auto size = a.size();
+					int min;
+					for(int i=0; i < size-1; i++)
+					{
+						min = i;
+						for(int j=0; j < size; j++)
+						{
+							if(a[j] < a[min])
+								min = a[j];
+
+							T temp = a[min];
+							a[min] = a[i];
+							a[i] = temp;
+						}
+					}
+				};
+
 
     void BubbleSort() {
         vector<T> a = myVector;
@@ -50,7 +69,51 @@ public:
 
     };
 
-    void MergeSort() {};
+		void MergeSort(){};
+
+		void Heapify(vector<T>& a, int size, int root)
+		{
+		  auto biggest = root;
+			auto left = 2*root + 1;
+			auto right = 2*root + 2;
+
+			if(left < size && a[left] > a[biggest])
+				biggest = left;
+
+			if(right < size && a[right] > a[biggest])
+				biggest = right;
+
+			if(biggest != root)
+			{
+				std::swap(a[root], a[biggest]);
+				Heapify(a, size, biggest);
+			}
+		};
+
+    void HeapSort()
+		{
+			auto a = myVector;
+			int size = a.size();
+
+			for(int i = size/2-1; i >= 0; i--)
+				Heapify(a, size, i);
+
+			for(int i = size-1; i >= 0; i--)
+			{
+				swap(a[0],a[i]);
+				Heapify(a, i, 0);
+			}
+
+			//imprimir vector 'a'
+			for(const auto& i: a)
+			{
+          cout<<i<<" ";
+      }
+      cout<<endl;
+
+		};
+
+    void QuickSort(){};
 
     void HeapSort() {};
 
