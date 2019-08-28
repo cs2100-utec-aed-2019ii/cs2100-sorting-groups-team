@@ -29,7 +29,7 @@ public:
             cout << i << " ";
         }
         cout << endl;
-    };
+    }
 
 		void SelectionSort()
 		{
@@ -56,7 +56,7 @@ public:
       }
 
       cout<<endl;
-		};
+		}
     
 		void BubbleSort() {
         vector<T> a = myVector;
@@ -74,7 +74,7 @@ public:
         }
         cout << endl;
 
-    };
+    }
 
 		void Heapify(vector<T>& a, int size, int root)
 		{
@@ -93,7 +93,7 @@ public:
 				std::swap(a[root], a[biggest]);
 				Heapify(a, size, biggest);
 			}
-		};
+		}
 
     void HeapSort()
 		{
@@ -117,7 +117,7 @@ public:
       }
       cout<<endl;
 
-		};
+		}
 
     int partition (vector<T>& a, int low, int high)
     {
@@ -187,77 +187,107 @@ public:
 
 			}
 
-	void merge(vector<T>& a, int l, int m, int r)
-	{
-		int i, j, k;
-		int n1 = m - l + 1;
-		int n2 =  r - m;
-
-		int L[n1], R[n2];
-
-		for (i = 0; i < n1; i++)
-			L[i] = a[l + i];
-		for (j = 0; j < n2; j++)
-			R[j] = a[m + 1+ j];
-		
-		j = 0;
-		i = 0;
-		k = l;
-
-		while (i < n1 && j < n2)
+		void merge(vector<T>& a, int l, int m, int r)
 		{
-			if (L[i] <= R[j])
+			int i, j, k;
+			int n1 = m - l + 1;
+			int n2 =  r - m;
+
+			int L[n1], R[n2];
+
+			for (i = 0; i < n1; i++)
+				L[i] = a[l + i];
+			for (j = 0; j < n2; j++)
+				R[j] = a[m + 1+ j];
+			
+			j = 0;
+			i = 0;
+			k = l;
+
+			while (i < n1 && j < n2)
+			{
+				if (L[i] <= R[j])
+				{
+					a[k] = L[i];
+					i++;
+				}
+				else
+				{
+					a[k] = R[j];
+					j++;
+				}
+				k++;
+			}
+
+			while (i < n1)
 			{
 				a[k] = L[i];
 				i++;
+				k++;
 			}
-			else
+
+			while (j < n2)
 			{
 				a[k] = R[j];
 				j++;
+				k++;
 			}
-			k++;
 		}
 
-		while (i < n1)
+		void mergeSort(vector<T>& a, int l, int r)
 		{
-			a[k] = L[i];
-			i++;
-			k++;
+			if (l < r)
+			{
+				int m = l+(r-l)/2;
+
+				mergeSort(a, l, m);
+				mergeSort(a, m+1, r);
+
+				merge(a, l, m, r);
+			}
 		}
 
-		while (j < n2)
+		void MergeSort(){
+			auto a = myVector;
+			mergeSort(a, 0, a.size() - 1);
+
+			cout<<"MergeSort"<<endl;
+			for(const auto& i: a){
+				cout<<i<<" ";
+			}
+			cout<<endl;
+		};
+
+		void CountingSort()
 		{
-			a[k] = R[j];
-			j++;
-			k++;
+			auto a = myVector;
+			int max = *max_element(a.begin(), a.end());
+			int min = *min_element(a.begin(), a.end());
+			int range = max - min + 1;
+
+			vector<int> count(range), output(a.size());
+
+			for(int i = 0; i < a.size(); i++)
+				count[a[i]-min]++;
+
+			for(int i = 1; i < count.size(); i++)
+				count[i] += count[i-1];
+			
+			for(int i = a.size()-1; i >= 0; i--)
+			{
+				output[count[a[i]-min] - 1] = a[i];
+				count[a[i]-min]--;
+			}
+
+			for(int i = 0; i < a.size(); i++)
+				a[i] = output[i];
+
+			cout<<"CountingSort"<<endl;
+			for(const auto& i: a)
+				cout<<i<<" ";
+			
+			cout<<endl;
 		}
-	}
-
-	void mergeSort(vector<T>& a, int l, int r)
-	{
-		if (l < r)
-		{
-			int m = l+(r-l)/2;
-
-			mergeSort(a, l, m);
-			mergeSort(a, m+1, r);
-
-			merge(a, l, m, r);
-		}
-	}
-
-	void MergeSort(){
-		auto a = myVector;
-		mergeSort(a, 0, a.size() - 1);
-
-		cout<<"MergeSort"<<endl;
-		for(const auto& i: a){
-			cout<<i<<" ";
-		}
-		cout<<endl;
-
-	};
 
 };
 
@@ -273,6 +303,7 @@ int main (int, char * []){
     mySort.HeapSort();
     mySort.QuickSort();
     mySort.BrickSort();
+		mySort.CountingSort();
 
 	return 1;
 }
