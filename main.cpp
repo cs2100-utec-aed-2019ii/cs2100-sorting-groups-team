@@ -31,24 +31,31 @@ public:
     };
 
 		void SelectionSort()
-				{
-					vector<T> a = myVector;
-					auto size = a.size();
-					int min;
-					for(int i=0; i < size-1; i++)
-					{
-						min = i;
-						for(int j=0; j < size; j++)
-						{
-							if(a[j] < a[min])
-								min = a[j];
+		{
+			auto a = myVector;
+			int size = a.size();
+			int min;
+			int j;
+			
+			for(int i=0; i < size-1; i++)
+			{
+				min = i;
 
-							T temp = a[min];
-							a[min] = a[i];
-							a[i] = temp;
-						}	
-					}
-				};
+				for(j=i+1; j < size; j++)
+					if(a[j] < a[min])
+						min = j;
+
+				swap(a[min],a[i]);	
+			}
+
+      cout<<"SelectionSort"<<endl;
+
+			for(const auto& i: a){
+				cout<<i<<" ";
+      }
+
+      cout<<endl;
+		};
 
 
     void BubbleSort(){
