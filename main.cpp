@@ -113,10 +113,6 @@ public:
 
 		};
 
-    void QuickSort(){};
-
-    void HeapSort() {};
-
     void swap2(int* a, int* b){
         int t = *a;
         *a = *b;
@@ -161,7 +157,41 @@ public:
         cout << endl;
     }
 
+    void BrickSort(){
+
+    vector<T> a = myVector;
+
+    bool sorted = false;
+
+    while(!sorted){
+      sorted = true;
+
+      for(unsigned int i = 0; i<=a.size()-2;i+=2){
+        if (a[i] > a[i + 1]) {
+            std::swap(a[i], a[i + 1]);
+            sorted = false;
+        }
+      }
+
+      for(unsigned int i = 1; i<=a.size()-2;i+=2){
+        if (a[i] > a[i + 1]) {
+            std::swap(a[i], a[i + 1]);
+            sorted = false;
+        }
+      }
+    }
+
+    for(T i:a){
+      cout<<i<<" ";
+    }
+    cout<<endl;
+
+  }
+
 };
+
+
+
 
 int main (int, char * []){
 
@@ -173,6 +203,7 @@ int main (int, char * []){
     mySort.MergeSort();
     mySort.HeapSort();
     mySort.QuickSort();
+    mySort.BrickSort();
 
     std::cout << "Hello World" << std::endl;
     return 1;
