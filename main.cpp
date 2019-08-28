@@ -11,7 +11,6 @@ private:
 public:
     Sorting() = default;
 
-
     void InsertSort() {
 
         unsigned int j;
@@ -25,6 +24,7 @@ public:
             }
         }
 
+				cout<<"InsertSort"<<endl;
         for (T i: a) {
             cout << i << " ";
         }
@@ -68,14 +68,13 @@ public:
             }
         }
 
+				cout<<"BubbleSort"<<endl;
         for (T i: a) {
             cout << i << " ";
         }
         cout << endl;
 
     };
-
-		void MergeSort(){};
 
 		void Heapify(vector<T>& a, int size, int root)
 		{
@@ -111,6 +110,7 @@ public:
 			}
 
 			//imprimir vector 'a'
+      cout<<"HeapSort"<<endl;
 			for(const auto& i: a)
 			{
           cout<<i<<" ";
@@ -119,89 +119,152 @@ public:
 
 		};
 
-    void swap2(int* a, int* b){
-        int t = *a;
-        *a = *b;
-        *b = t;
-    }
-
-    int partition ( int low, int high)
+    int partition (vector<T>& a, int low, int high)
     {
-        vector<T> arr = myVector;
-        int pivot = arr[high]; // pivot
-        int i = (low - 1); // Index of smaller element
+        int pivot = a[high];
+				int i = (low - 1); 
 
         for (int j = low; j <= high - 1; j++)
         {
-            if (arr[j] < pivot)
+            if (a[j] < pivot)
             {
                 i++;
-                swap2(&arr[i], &arr[j]);
+                swap(a[i], a[j]);
             }
         }
-        swap2(&arr[i + 1], &arr[high]);
+        swap(a[i + 1], a[high]);
         return (i + 1);
     }
-    void quickSort( int low, int high)
+
+    void quickSort(vector<T>& a, int low, int high)
     {
         if (low < high)
         {
-            int pi = partition(low, high);
-            quickSort( low, pi - 1);
-            quickSort( pi + 1, high);
+            int pi = partition(a,low, high);
+            quickSort(a,low, pi - 1);
+            quickSort(a, pi + 1, high);
         }
     }
 
     void QuickSort() {
         vector<T> a = myVector;
-        quickSort( 0 , a.size()-1);
+        quickSort(a, 0, a.size()-1);
 
+				cout<<"QuickSort"<<endl;
         for (T i: a) {
             cout << i << " ";
         }
-        cout << "          quick sort           ";
         cout << endl;
     }
 
     void BrickSort(){
+			vector<T> a = myVector;
+			bool sorted = false;
 
-    vector<T> a = myVector;
+			while(!sorted){
+				sorted = true;
 
-    bool sorted = false;
+				for(unsigned int i = 0; i<=a.size()-2;i+=2){
+					if (a[i] > a[i + 1]) {
+							std::swap(a[i], a[i + 1]);
+							sorted = false;
+					}
+				}
 
-    while(!sorted){
-      sorted = true;
+				for(unsigned int i = 1; i<=a.size()-2;i+=2){
+					if (a[i] > a[i + 1]) {
+							std::swap(a[i], a[i + 1]);
+							sorted = false;
+					}
+				}
+		 }
 
-      for(unsigned int i = 0; i<=a.size()-2;i+=2){
-        if (a[i] > a[i + 1]) {
-            std::swap(a[i], a[i + 1]);
-            sorted = false;
-        }
-      }
+			cout<<"BrickSort"<<endl;
+			for(T i:a){
+				cout<<i<<" ";
+			}
+			cout<<endl;
 
-      for(unsigned int i = 1; i<=a.size()-2;i+=2){
-        if (a[i] > a[i + 1]) {
-            std::swap(a[i], a[i + 1]);
-            sorted = false;
-        }
-      }
-    }
+			}
 
-    for(T i:a){
-      cout<<i<<" ";
-    }
-    cout<<endl;
+	void merge(vector<T>& a, int l, int m, int r)
+	{
+		int i, j, k;
+		int n1 = m - l + 1;
+		int n2 =  r - m;
 
-  }
+		int L[n1], R[n2];
+
+		for (i = 0; i < n1; i++)
+			L[i] = a[l + i];
+		for (j = 0; j < n2; j++)
+			R[j] = a[m + 1+ j];
+		
+		j = 0;
+		i = 0;
+		k = l;
+
+		while (i < n1 && j < n2)
+		{
+			if (L[i] <= R[j])
+			{
+				a[k] = L[i];
+				i++;
+			}
+			else
+			{
+				a[k] = R[j];
+				j++;
+			}
+			k++;
+		}
+
+		while (i < n1)
+		{
+			a[k] = L[i];
+			i++;
+			k++;
+		}
+
+		while (j < n2)
+		{
+			a[k] = R[j];
+			j++;
+			k++;
+		}
+	}
+
+	void mergeSort(vector<T>& a, int l, int r)
+	{
+		if (l < r)
+		{
+			int m = l+(r-l)/2;
+
+			mergeSort(a, l, m);
+			mergeSort(a, m+1, r);
+
+			merge(a, l, m, r);
+		}
+	}
+
+	void MergeSort(){
+		auto a = myVector;
+		mergeSort(a, 0, a.size() - 1);
+
+		cout<<"MergeSort"<<endl;
+		for(const auto& i: a){
+			cout<<i<<" ";
+		}
+		cout<<endl;
+
+	};
 
 };
 
 
-
-
 int main (int, char * []){
 
-    Sorting<int> mySort;
+	Sorting<int> mySort;
 
     mySort.InsertSort();
     mySort.SelectionSort();
@@ -211,6 +274,5 @@ int main (int, char * []){
     mySort.QuickSort();
     mySort.BrickSort();
 
-    std::cout << "Hello World" << std::endl;
-    return 1;
+	return 1;
 }
