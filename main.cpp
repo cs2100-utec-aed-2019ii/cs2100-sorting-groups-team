@@ -119,42 +119,35 @@ public:
 
 		};
 
-    void swap2(int* a, int* b){
-        int t = *a;
-        *a = *b;
-        *b = t;
-    }
-
-    int partition ( int low, int high)
+    int partition (vector<T>& a, int low, int high)
     {
-        vector<T> arr = myVector;
-        int pivot = arr[high]; // pivot
-        int i = (low - 1); // Index of smaller element
+        int pivot = a[high];
+				int i = (low - 1); 
 
         for (int j = low; j <= high - 1; j++)
         {
-            if (arr[j] < pivot)
+            if (a[j] < pivot)
             {
                 i++;
-                swap2(&arr[i], &arr[j]);
+                swap(a[i], a[j]);
             }
         }
-        swap2(&arr[i + 1], &arr[high]);
+        swap(a[i + 1], a[high]);
         return (i + 1);
     }
-    void quickSort( int low, int high)
+    void quickSort(vector<T>& a, int low, int high)
     {
         if (low < high)
         {
-            int pi = partition(low, high);
-            quickSort( low, pi - 1);
-            quickSort( pi + 1, high);
+            int pi = partition(a,low, high);
+            quickSort(a,low, pi - 1);
+            quickSort(a, pi + 1, high);
         }
     }
 
     void QuickSort() {
         vector<T> a = myVector;
-        quickSort( 0 , a.size()-1);
+        quickSort(a, 0, a.size()-1);
 
         for (T i: a) {
             cout << i << " ";
