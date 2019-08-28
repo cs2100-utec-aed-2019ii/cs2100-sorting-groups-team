@@ -30,7 +30,26 @@ public:
         cout<<endl;
     };
 
-    void SelectionSort(){};
+		void SelectionSort()
+				{
+					vector<T> a = myVector;
+					auto size = a.size();
+					int min;
+					for(int i=0; i < size-1; i++)
+					{
+						min = i;
+						for(int j=0; j < size; j++)
+						{
+							if(a[j] < a[min])
+								min = a[j];
+
+							T temp = a[min];
+							a[min] = a[i];
+							a[i] = temp;
+						}	
+					}
+				};
+
 
     void BubbleSort(){
       vector<T> a = myVector;
@@ -49,7 +68,7 @@ public:
 
     };
 
-    void MergeSort(){};
+		void MergeSort(){};
 		
 		void Heapify(vector<T>& a, int size, int root)
 		{
