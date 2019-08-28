@@ -10,15 +10,15 @@ Implementar la clase `Sorting <typename T>`  con los siguientes métodos:
 	- [x] InsertSort  -> (3pts)
 	- [x] SelectionSort -> (3pts)
 	- [x] BubbleSort -> (3pts)
-	- [ ] MergeSort -> (3pts)
+	- [x] MergeSort -> (3pts)
 	- [x] HeapSort -> (3pts)
-	- [ ] QuickSort  -> (3pts) 
+	- [x] QuickSort  -> (3pts) 
 
 ### Extra: (2pts)
 	- [ ] ShellSort  -> (2pts)
 	- [ ] BinSort -> (2pts)
 	- [ ] RadixSort -> (2pts)
-	- [ ] BrickSort -> (2pts)
+	- [x] BrickSort -> (2pts)
 	- [ ] CountingSort -> (2pts)
 
 ### Herramientas
